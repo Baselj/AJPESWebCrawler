@@ -18,4 +18,4 @@ The script uses selenium driver to control Chrome web browser, correct version o
   - mailUname (your gmail address), 
   - mailPwd (your gmail password) 
   - fromEmail (send from email address)
-  - recipientEmail (recipient list, divided by ;)
+  - recipientEmail (recipient email list, divided by ;)
