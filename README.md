@@ -14,4 +14,8 @@ The script uses selenium driver to control Chrome web browser, correct version o
 ## How do I use it?
 
 - Configure your gmail account to enable automation of emails 
-- Configure the variable mailUname (your gmail address), mailPwd (your gmail password) and fromEmail (send from email address)
+- Configure variables
+  - mailUname (your gmail address), 
+  - mailPwd (your gmail password) 
+  - fromEmail (send from email address)
+  - recipientEmail (recipient list, divided by ;)
