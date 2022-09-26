@@ -1,4 +1,17 @@
-﻿from asyncio.windows_events import NULL
+﻿########configuration###########
+#requirements selenium, PyPDF2
+#gmail configuration
+#your gmail address 
+mailUname="" 
+#your gmail password (this is password generated in google after you complete two step verification)
+mailPwd=""
+#send from which email address
+fromEmail=""
+#recepientList seperated by;
+recipientEmail = "";
+########end configuration###########
+
+from asyncio.windows_events import NULL
 import datetime
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -24,17 +37,7 @@ from email.mime.multipart import MIMEMultipart
 from email import encoders
 import sys
 
-#pip install selenium
-#pip install PyPDF2
-#gmail configuration
-#your gmail address 
-mailUname="" 
-#your gmail password (this is password generated in google after you complete two step verification)
-mailPwd=""
-#send from which email address
-fromEmail=""
-#recepientList seperated by;
-recipientEmail = "";
+
 osnovniFolder =os.path.dirname(os.path.realpath(__file__))
 downloadFolder = osnovniFolder+r"\DownloadFolder"
 chromeDriverFolder = osnovniFolder+ r"\SeleniumDrivers\chromedriver.exe"
