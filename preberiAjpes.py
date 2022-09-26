@@ -33,7 +33,8 @@ mailUname=""
 mailPwd=""
 #send from which email address
 fromEmail=""
-
+#recepientList seperated by;
+recipientEmail = "";
 osnovniFolder =os.path.dirname(os.path.realpath(__file__))
 downloadFolder = osnovniFolder+r"\DownloadFolder"
 chromeDriverFolder = osnovniFolder+ r"\SeleniumDrivers\chromedriver.exe"
@@ -203,7 +204,7 @@ browser.quit()
 print(mailBody)
 if mailBody==mailZacetek:
     mailBody=""
-posljiEmail(mailBody,potZdruzenegaPdf,["kristof.baselj@gmail.com"])
+posljiEmail(mailBody,potZdruzenegaPdf,recipientEmail)
 brisiFolderUstvariNovega(downloadFolder+"\send")
 brisiFolderCePrevelik(downloadFolder,2900000000)
 sys.exit()
