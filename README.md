@@ -1,4 +1,4 @@
-# Preberi Ajpes - Python web crawler
+# Read Ajpes website - Python web crawler
 
 ## Features
 Read AJPES website, click through the public auctions, download and merge PDF public auction files and send it in an e-mail.
