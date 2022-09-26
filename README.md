@@ -1,6 +1,7 @@
 # Read Ajpes website - Python web crawler
 
 ## Features
+
 Read AJPES website, click through the public auctions, download and merge PDF public auction files and send it in an e-mail.
 
 ## Requirements
@@ -19,3 +20,7 @@ The script uses selenium driver to control Chrome web browser, correct version o
   - mailPwd (your gmail password) 
   - fromEmail (send from email address)
   - recipientEmail (recipient email list, divided by ;)
+
+## Exmaple
+
+Example of merged pdf can be found in [DownloadFolder/sned](https://github.com/Baselj/PythonAJPESWebCrawler/blob/main/DownloadFolder/send/2022-09-26AjpesDrazbe.pdf)
