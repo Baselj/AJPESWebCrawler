@@ -1,3 +1,8 @@
-# PythonAJPESWebCrawler
- Preberi AJPES javne dražbe, združi v skupen PDF in pošlji email
-##test
+# Preberi Ajpes - Python web crawler
+
+## Features
+Read AJPES website, click through the public auctions, download pd
+
+## Requirements
+
+#How do I use it?
