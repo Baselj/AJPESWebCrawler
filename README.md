@@ -12,7 +12,7 @@ Read AJPES website, click through the public auctions, download and merge PDF pu
 
 Script uses selenium driver to control Chrome web browser, correct version of selenium driver for your Chrome web browser is required.
 
-Required Python packages are documented in requirements.txt, see https://learn.microsoft.com/en-us/visualstudio/python/managing-required-packages-with-requirements-txt?view=vs-2022
+Required Python packages are documented in requirements.txt, see [instructions howto install] (https://learn.microsoft.com/en-us/visualstudio/python/managing-required-packages-with-requirements-txt?view=vs-2022)
 
 ## How do I use it?
 
