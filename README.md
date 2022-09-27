@@ -15,7 +15,7 @@ Read AJPES website, click through the public auctions, download and merge PDF pu
 ## How do I use it?
 
 - Configure your Gmail account to enable automation of emails 
-- Configure variables
+- Configure variables in config.ini file
   - mailUname (your gmail address), 
   - mailPwd (your gmail password) 
   - fromEmail (send from email address)
