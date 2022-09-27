@@ -1,5 +1,4 @@
 ﻿########configuration###########
-#requirements selenium, PyPDF2
 #gmail configuration
 #your gmail address 
 mailUname="" 
@@ -37,29 +36,32 @@ from email.mime.multipart import MIMEMultipart
 from email import encoders
 import sys
 
-
+#folders for downloaded PDFs
 osnovniFolder =os.path.dirname(os.path.realpath(__file__))
 downloadFolder = osnovniFolder+r"\DownloadFolder"
 chromeDriverFolder = osnovniFolder+ r"\SeleniumDrivers\chromedriver.exe"
+#how many rows do you want to read from AJPES
 kolikoVrsticZelim = "500"
 mailBody=""
+#add a element of randomness so website doesn't flag you as DDOS
 randomZakasnitev = random.randint(1,3)
 url='https://www.ajpes.si/eObjave/rezultati.asp?podrobno=0&id_skupina=51&TipDolznika=-1&TipPostopka=-1&id_SkupinaVrsta=-1&id_skupinaPodVrsta=-1&Dolznik=&Oblika=&MS=&DS=&StStevilka=&Sodisce=-1&DatumDejanja_od=&DatumDejanja_do=&sys_ZacetekObjave_od=&sys_ZacetekObjave_do=&MAXREC='+kolikoVrsticZelim
+#what do you want to download
 tekstZaDll =["razpis dražbe / vabila k dajanju ponudb"]
 
 
 def posljiEmail(mailBody,priponka,prejemniki):
     smtpHost="smtp.gmail.com"
     smtpPort=587
-
+    #if no changes send email that there are no new auctions, otherwise send merged PDF
     if mailBody == "":
         mailSubject ="Ni novih AJPES drazb dne " + str(datetime.date.today())
     else:
         mailSubject= "AJPES drazbe dne " + str(datetime.date.today())
-
     mailContentHTML= mailBody
     if mailContentHTML =="":
         mailContentHTML="Ni novih "+r"<a href='"+url+r"'>AJPES drazb</a>" +" dne " + str(datetime.date.today())
+    
     msg=MIMEMultipart()
     msg['From'] = fromEmail
     msg['To'] = ','.join(prejemniki)
@@ -84,7 +86,7 @@ def posljiEmail(mailBody,priponka,prejemniki):
     if not len(sendErrs.keys()) ==0:
         raise Exception("Errors occured while sending email", sendErrs)
 
-    
+#get the last file in the folder    
 def dobiZadnjiFile(folder):
     file_type = r'\*pdf'
     files = glob.glob(folder + file_type)
@@ -93,12 +95,14 @@ def dobiZadnjiFile(folder):
     else:
         return folder,glob.glob(folder+"/*")[0].split(os.sep)[-1]
 
+#create a folder and copy 
 def ustvariFolderSkopiraj(fileSrc,fileDest):
     if not os.path.exists(fileDest):
         os.makedirs(fileDest)
     os.chmod(fileDest, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
     shutil.copy(fileSrc,fileDest)
-        
+
+#delete a folder and create a new one        
 def brisiFolderUstvariNovega(folder):
         folder= folder
         os.chmod(folder, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
@@ -107,6 +111,7 @@ def brisiFolderUstvariNovega(folder):
             os.makedirs(folder)
             os.chmod(folder, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
 
+#delete download folder if it's too large
 def brisiFolderCePrevelik(folder,maxvelikost):
     size = 0
 
@@ -121,6 +126,7 @@ def brisiFolderCePrevelik(folder,maxvelikost):
         os.makedirs(folder)
         os.chmod(folder, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
 
+#wait until download has completed before going to download a new file
 def every_downloads_chrome(driver):
     if not driver.current_url.startswith("chrome://downloads"):
         driver.get("chrome://downloads/")
@@ -131,6 +137,7 @@ def every_downloads_chrome(driver):
             return items.map(e => e.fileUrl || e.file_url);
         """)
 
+#merge all PDFs
 def zdruziVsePdf (folder):
         folder= folder
         pdfs = os.listdir(folder)
@@ -145,10 +152,11 @@ def zdruziVsePdf (folder):
         merger.close()
         return pot
 
-s=Service(chromeDriverFolder)
 
+s=Service(chromeDriverFolder)
 chrome_options = webdriver.ChromeOptions()
 chrome_options = Options()
+#decomment if you want to run a headless browser -without the GUI
 #chrome_options.add_argument("--headless")
 
 chrome_options.add_experimental_option("prefs", {
