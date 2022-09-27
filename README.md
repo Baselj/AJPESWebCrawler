@@ -21,6 +21,6 @@ Read AJPES website, click through the public auctions, download and merge PDF pu
   - fromEmail (send from email address)
   - recipientEmail (recipient email list, divided by ;)
 
-## Exmaple
+## Example
 
 Example of merged pdf can be found in [DownloadFolder/send](https://github.com/Baselj/PythonAJPESWebCrawler/blob/main/DownloadFolder/send/2022-09-26AjpesDrazbe.pdf)
