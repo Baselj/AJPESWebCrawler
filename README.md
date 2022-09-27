@@ -22,4 +22,4 @@ Read AJPES website, click through the public auctions, download and merge PDF pu
 
 ## Exmaple
 
-Example of merged pdf can be found in [DownloadFolder/sned](https://github.com/Baselj/PythonAJPESWebCrawler/blob/main/DownloadFolder/send/2022-09-26AjpesDrazbe.pdf)
+Example of merged pdf can be found in [DownloadFolder/send](https://github.com/Baselj/PythonAJPESWebCrawler/blob/main/DownloadFolder/send/2022-09-26AjpesDrazbe.pdf)
