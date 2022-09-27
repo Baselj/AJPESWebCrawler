@@ -1,2 +1,3 @@
 SeleniumDrivers/
 *.ini
+git rm --cached sites/default/settings.ph
