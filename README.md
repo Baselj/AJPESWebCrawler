@@ -17,10 +17,10 @@ Read AJPES website, click through the public auctions, download and merge PDF pu
 3. Required Python packages are documented in requirements.txt, see [instructions how to install packages](https://learn.microsoft.com/en-us/visualstudio/python/managing-required-packages-with-requirements-txt?view=vs-2022)
 4. Create [access credentials for gmail account](https://developers.google.com/workspace/guides/create-credentials) 
 5. Configure config.ini with your credentials
-  - mailUname (your gmail address), 
-  - mailPwd (your gmail password) 
-  - fromEmail (send from email address)
-  - recipientEmail (recipient email list, divided by ;)
+    - mailUname (your gmail address), 
+    - mailPwd (your gmail password) 
+    - fromEmail (send from email address)
+    - recipientEmail (recipient email list, divided by ;)
 
 ## Example
 
