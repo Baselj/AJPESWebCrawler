@@ -1,16 +1,4 @@
-﻿########configuration###########
-#gmail configuration
-#your gmail address 
-mailUname="" 
-#your gmail password (this is password generated in google after you complete two step verification)
-mailPwd=""
-#send from which email address
-fromEmail=""
-#recepientList seperated by;
-recipientEmail = "";
-########end configuration###########
-
-from asyncio.windows_events import NULL
+﻿from asyncio.windows_events import NULL
 import datetime
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -35,6 +23,14 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email import encoders
 import sys
+import configparser
+
+config= configparser.ConfigParser()
+config.read("config.ini")
+mailUname=config.get('EmailConfig','mailUname')
+mailPwd=config.get('EmailConfig','mailPwd')
+fromEmail=config.get('EmailConfig','fromEmail')
+recipientEmail = config.get('EmailConfig','receipientEmail');
 
 #folders for downloaded PDFs
 osnovniFolder =os.path.dirname(os.path.realpath(__file__))
@@ -152,11 +148,11 @@ def zdruziVsePdf (folder):
         merger.close()
         return pot
 
-
+#start chromedriver
 s=Service(chromeDriverFolder)
 chrome_options = webdriver.ChromeOptions()
 chrome_options = Options()
-#decomment if you want to run a headless browser -without the GUI
+#uncomment if you want to run a headless browser -without the GUI
 #chrome_options.add_argument("--headless")
 
 chrome_options.add_experimental_option("prefs", {
@@ -174,6 +170,7 @@ tableRezultati= browser.find_element(By.ID, "tableRezultati")
 
 prvic=True
 time.sleep(randomZakasnitev)
+
 if tableRezultati.find_elements(By.XPATH, ("//*[contains(text(),'DOVOLIM')]")) and prvic:
     tableRezultati.find_element(By.XPATH, ("//*[contains(text(),'DOVOLIM')]")).click()
 vrstice = tableRezultati.find_elements(By.TAG_NAME, "tr")    
@@ -194,16 +191,13 @@ for vrstica in vrstice:
                 prvic=False
             datum=datetime.datetime.strptime(browser.find_element(By.XPATH, ("//*[contains(text(),'Datum objave:')]/following-sibling::th")).text,'%d.%m.%Y   %H:%M')
             datumString=datum.strftime("%Y-%m-%d %H:%M")
-            
             browser.find_element(By.XPATH, ("//*[contains(text(),'Vsebina procesnega dejanja')]")).click()
             time.sleep(randomZakasnitev)
             tekstBody= (datumString + " - "+browser.find_element(By.XPATH, ("//*[contains(text(),'Sodišče')]/following-sibling::th")).text + " - "+browser.find_element(By.XPATH, ("//*[contains(text(),'Dolžnik')]/following-sibling::th")).text)+ os.linesep +"<br>"
             WebDriverWait(browser, 120, 1).until(every_downloads_chrome)
-            
+            #if the files were downloaded again dont send them
             if ((dobiZadnjiFile(downloadFolder)[1][-7:] in ("(1).pdf","(2).pdf","(3).pdf","(4).pdf")) == False):
-                
                 mailBody =mailBody+ tekstBody
-                
                 ustvariFolderSkopiraj(dobiZadnjiFile(downloadFolder)[0],downloadFolder+"\send")
             browser.close()
             browser.switch_to.window(browser.window_handles[0])
