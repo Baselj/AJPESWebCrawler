@@ -25,3 +25,15 @@ Read AJPES website, click through the public auctions, download and merge PDF pu
 ## Example
 
 Example of merged pdf can be found in [DownloadFolder/send](https://github.com/Baselj/PythonAJPESWebCrawler/blob/main/DownloadFolder/send/2022-09-26AjpesDrazbe.pdf)
+
+## Features
+
+The script is designed to use automated control of Chrome browser. The process is as follows:
+ - It goes to the original website, 
+ - finds the selected element, 
+ - clicks it, 
+ - waits for downloading, 
+ - clicks the download link, 
+ - waits for chrome to finish downloading, 
+ - goes back to original website 
+ - and repeats the process.
