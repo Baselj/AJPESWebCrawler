@@ -38,3 +38,5 @@ The script is designed to use automated control of Chrome browser. The process i
  - closes the newly opened window,
  - goes back to original website, 
  - and repeats the process.
+
+Afterwards it merges all the downloaded PDFs and sends the via e-mail with description of downloaded files in the body and merged PDF in the attachment.
