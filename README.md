@@ -32,8 +32,9 @@ The script is designed to use automated control of Chrome browser. The process i
  - It goes to the original website, 
  - finds the selected element, 
  - clicks it, 
- - waits for downloading, 
+ - waits for page to load,
  - clicks the download link, 
  - waits for chrome to finish downloading, 
- - goes back to original website 
+ - closes the newly opened window,
+ - goes back to original website, 
  - and repeats the process.
