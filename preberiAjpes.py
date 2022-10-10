@@ -30,7 +30,7 @@ config.read("config.ini")
 mailUname=config.get('EmailConfig','mailUname')
 mailPwd=config.get('EmailConfig','mailPwd')
 fromEmail=config.get('EmailConfig','fromEmail')
-recipientEmail = config.get('EmailConfig','receipientEmail');
+recipientEmail = config.get('EmailConfig','receipientEmail').split(";");
 
 #folders for downloaded PDFs
 osnovniFolder =os.path.dirname(os.path.realpath(__file__))
